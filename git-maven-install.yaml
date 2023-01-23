@@ -1,0 +1,22 @@
+---
+ - hosts: all
+   gather_facts: true
+   become: yes
+   vars:
+     java_version: java-1.8.0-openjdk.x86_64
+#     tomcat_url: https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.20/src/apache-tomcat-9.0.20-src.tar.gz
+#     tomcat_port: 8080
+   tasks:
+     - name: Install Java
+       yum:
+         name: "{{java_version}}"
+         state: present
+     - name: Install git 
+       yum:
+         name: git
+         state: present
+         update_cache: yes
+     - name: Install maven
+       yum:
+         name: maven
+         state: present
